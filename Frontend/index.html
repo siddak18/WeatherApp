@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>WeatherApp</title>
+</head>
+<body>
+    <section class="main">
+         <div class="card1">
+            <div class="data">
+                <div class="date-par">
+                <div id="date"></div>
+                <div id="year"></div>
+                <div id="locat"><img src="./Assets/location.svg" alt="">Bhopal,Madhya Pradesh</div>
+                </div>
+                <div>
+               <div id="icon"></div>
+               <h2 id="temp"></h2>
+               <h3 id="type"></h3>
+            </div>
+            </div>
+         </div>
+         <div class="card2">
+            <div class="data2">
+             <div class="sub-data">
+                <h4>PRECIPITATION <span id="prec">0%</span></h4>
+                <h4>HUMIDITY <span id="humid">34%</span></h4>
+                <h4>WIND <span id="wind">54km/h</span></h4>
+             </div>
+             <div class="days">
+                <div class="days-sub" id="sep">
+                    <img src="//cdn.weatherapi.com/weather/64x64/day/113.png" >
+                    <h4 class="day-par">Tue</h4>
+                    <h4 class="temp-sub">22°C</h4>
+                </div>
+                <div class="days-sub">
+                    <img src="//cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                    <h4 class="day-par">Tue</h4>
+                    <h4 class="temp-sub">25°C</h4>
+                </div>
+                <div class="days-sub">
+                    <img src="//cdn.weatherapi.com/weather/64x64/day/113.png" alt="">
+                    <h4 class="day-par">Tue</h4>
+                    <h4 class="temp-sub">30°C</h4>
+                </div>
+                <div class="days-sub">
+                    <img src="//cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                    <h4 class="day-par">Tue</h4>
+                    <h4 class="temp-sub">29°C</h4>
+                </div>
+             </div>
+             <div>
+                 <form action="" class="inputs" onsubmit="handelsubmit()">
+                    <input type="text" id="city-name" autocomplete="off">
+                 <button id="submit"><img src="./Assets/location.svg" alt=""> Change Location</button>
+                </form>
+             </div>
+            </div>
+         </div>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
