@@ -190,7 +190,7 @@ if(login){
   nameblock.textContent="Signin/Signup";
   console.log("logout");
   nameblock.addEventListener('click',()=>{
-    window.location.replace="./Auth/signin.html"
+    window.location.href="./Auth/signin.html"
   });
 }
  
