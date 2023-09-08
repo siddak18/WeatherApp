@@ -1,8 +1,10 @@
 // utils 
-var days=["Sunday","Monday","Wednesday","Tuesday","Wednesday","ThursDay","Friday","Saturday"];
+var days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var days2=["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"];
 var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const da=new Date();
-
+console.log(da.getDay());
+console.log(days[5]);
 // elements
   const div=document.getElementById("icon");
   const date=document.getElementById("date");
@@ -34,7 +36,7 @@ const da=new Date();
 
     if(cityname.length>=0){
     // requesting data for the respective city
-    axios.post("http://localhost:8000",{name:cityname}).then((data)=>{
+    axios.post("https://weather-7tsc.onrender.com/",{name:cityname}).then((data)=>{
     console.log(data.data);
     card1(data.data.current,data.data.location);
     card2(data.data.forecast.forecastday,data.data.current);
@@ -127,7 +129,7 @@ const da=new Date();
   div.style.backgroundImage = `url(${data.condition.icon})`;
   console.log(`url(${data.condition.icon})`);
   console.log(da);
-  date.textContent=`${days[da.getDay()]}`;
+  date.textContent=`${days2[da.getDay()]}`;
   daa.textContent=`${da.getDate()} ${months[da.getMonth()]} ${da.getFullYear()}`
    temp.textContent=`${data.temp_c} deg C`
    type.textContent=`${data.condition.text}`;
