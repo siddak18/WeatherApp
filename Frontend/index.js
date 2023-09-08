@@ -17,6 +17,10 @@ const da=new Date();
   const prec=document.getElementById("prec");
   const humid=document.getElementById("humid");
   const wind=document.getElementById("wind");
+  const nameblock=document.getElementById("username");
+  const favcity=document.getElementById("fav-city");
+  const usercity=document.getElementById("usercity");
+  const addfav=document.getElementById("add");
 
   let cityname="";
   input.addEventListener("change",(e)=>{
@@ -28,8 +32,10 @@ const da=new Date();
     e.preventDefault();
     if(input.style.display==="none"){
       input.style.display="flex";
+      addfav.style.display="flex";
     }else{
       input.style.display="none";
+      addfav.style.display="none";
     }
 
     if(cityname.length>=0){
@@ -82,6 +88,25 @@ const da=new Date();
     k++;
   });
 
+
+
+
+  // adding fav cities
+   addfav.addEventListener('click',()=>{
+      if(cityname.length!==0){
+        const data={
+          username:user.username,
+          city:cityname.toLowerCase()
+        }
+        axios.post("https://weather-7tsc.onrender.com/addfav",data).then(res=>{
+          console.log(res.data);
+        });
+        const option=document.createElement("option");
+     option.text=cityname;
+     usercity.appendChild(option);
+      }
+   })
+
   // Demo data
   let data={
     last_updated_epoch: 1694079000,
@@ -121,11 +146,65 @@ const da=new Date();
   
   date.textContent=`${days2[da.getDay()]}`;
   daa.textContent=`${da.getDate()} ${months[da.getMonth()]} ${da.getFullYear()}`
-   temp.textContent=`${data.temp_c} deg C`
+   temp.textContent=`${data.temp_c} °C`
    type.textContent=`${data.condition.text}`;
 
+   const logout=document.getElementById("logout");
+
+console.log(localStorage.getItem('islogin'));
+console.log( JSON.parse(localStorage.getItem("user")));
+let login=localStorage.getItem('islogin');
+const user=JSON.parse(localStorage.getItem("user"));
+logout.addEventListener('click',()=>{
+ localStorage.setItem('islogin',false);
+ login=localStorage.getItem('islogin');
+  nameblock.textContent="Signin/Signup";
+  logout.textContent="";
+  favcity.textContent="";
+  console.log(login);
+  nameblock.addEventListener('click',()=>{
+    window.location.href="./Auth/signin.html"
+  });
+});
 
 
+const addcity=(arr)=>{
+  arr.forEach(element=>{
+     const option=document.createElement("option");
+     option.text=element;
+     usercity.appendChild(option);
+  });
+};
 
+logout.style.width="fit-content";
+if(login){
+     nameblock.textContent=user.username;
+     logout.textContent="logout";
+     logout.style.marginTop='1px'
+     addcity(user.cities);
+     axios.post("https://weather-7tsc.onrender.com/addfav",data).then(res=>{
+      console.log(res.data);
+      addcity(res.data);
+    });
+}else{
+  nameblock.textContent="Signin/Signup";
+  console.log("logout");
+  nameblock.addEventListener('click',()=>{
+    window.location.replace="./Auth/signin.html"
+  });
+}
+ 
+// const arr=["delhi","mumbai","chennai"];
 
-
+const favclick=document.getElementById("usercity");
+console.log(favclick);
+  
+usercity.addEventListener('change',(e)=>{
+  console.log(e.target.value);
+  axios.post("https://weather-7tsc.onrender.com/",{name:e.target.value}).then((data)=>{
+    card1(data.data.current,data.data.location);
+    card2(data.data.forecast.forecastday,data.data.current);
+    }).catch((err)=>{
+    console.log(err);
+    });
+})

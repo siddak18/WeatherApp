@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/signin.css">
+</head>
+<body>
+    <div class="login">
+        <h2 class="active" onclick="handeltog()"> sign in </h2>
+        <h2 class="nonactive" onclick="handeltog()"> sign up </h2>
+        <form  id="form">
+          <input type="text" class="text" name="username" id="username" autocomplete="off" >
+          <span>username</span>
+          <br>
+          <input type="password" class="text" name="password" id="password" autocomplete="off" >
+          <span>password</span>
+          <br>
+          <input type="password" class="text" name="confirmpassword"  id="check" autocomplete="off" >
+          <span id="check2"> confirm password</span>
+          <br>
+          <button class="signin" id="signup">
+            Sign In
+          </button>
+        </form>
+      </div>
+      <script  src="auth.js"></script>
+</body>
+</html>

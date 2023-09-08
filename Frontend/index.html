@@ -25,6 +25,19 @@
             </div>
          </div>
          <div class="card2">
+            <div class="top">
+            <div class="auth" id="username">
+               <a href="./Auth/signin.html"> Signin/Signup </a>
+                </div>
+              <div class="auth" id="fav-city">
+                <select name="cities" id="usercity" >
+                    <option value="" disabled selected>fav-city</option> 
+                </select>
+                </div>
+            </div>
+            <div class="auth" id="logout">
+            
+            </div>
             <div class="data2">
              <div class="sub-data">
                 <h4>PRECIPITATION <span id="prec">0%</span></h4>
@@ -56,12 +69,13 @@
              <div>
                  <form action="" class="inputs" onsubmit="handelsubmit()">
                     <input type="text" id="city-name" autocomplete="off">
+                    <button id="add" type="button">Add-fav</button>
                  <button id="submit"><img src="./Assets/location.svg" alt=""> Change Location</button>
                 </form>
              </div>
             </div>
          </div>
     </section>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
