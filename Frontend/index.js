@@ -3,8 +3,7 @@ var days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 var days2=["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"];
 var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const da=new Date();
-console.log(da.getDay());
-console.log(days[5]);
+
 // elements
   const div=document.getElementById("icon");
   const date=document.getElementById("date");
@@ -27,7 +26,6 @@ console.log(days[5]);
   // api call from backend and handeling on click for cities
   button.addEventListener("click",(e)=>{
     e.preventDefault();
-    console.log(e.target);
     if(input.style.display==="none"){
       input.style.display="flex";
     }else{
@@ -37,7 +35,6 @@ console.log(days[5]);
     if(cityname.length>=0){
     // requesting data for the respective city
     axios.post("https://weather-7tsc.onrender.com/",{name:cityname}).then((data)=>{
-    console.log(data.data);
     card1(data.data.current,data.data.location);
     card2(data.data.forecast.forecastday,data.data.current);
     }).catch((err)=>{
@@ -51,21 +48,16 @@ console.log(days[5]);
 
   // updating card 1 data
   const card1=(current,loc)=>{
-    console.log(current);
     div.style.backgroundImage=`url(${current.condition.icon})`;
     temp.textContent=`${current.temp_c}°C`
     type.textContent=`${current.condition.text}`;
     locat.textContent=` ${loc.name} ${loc.region}`
-    console.log(loc);
   };
 
 
   // updating card2 data
   const card2=(arr2,curr)=>{
   let k=1;
-  console.log(arr2);
-  console.log(subdays);
-  console.log(curr);
   prec.textContent=`${curr.precip_mm}%`
   humid.textContent=`${curr.humidity}%`
   wind.textContent=`${curr.wind_kph}km/h`
@@ -74,7 +66,6 @@ console.log(days[5]);
       console.log(arr);
       const imgElement = element.querySelector('img');
       const helement=element.querySelector('.temp-sub');
-      console.log(helement);
       helement.textContent=`${arr2[k].day.avgtemp_c}°C`
       imgElement.setAttribute('src', arr2[k].day.condition.icon);
       k++;
@@ -127,8 +118,7 @@ console.log(days[5]);
   div.style.marginLeft="20px"
   div.style.color="white"
   div.style.backgroundImage = `url(${data.condition.icon})`;
-  console.log(`url(${data.condition.icon})`);
-  console.log(da);
+  
   date.textContent=`${days2[da.getDay()]}`;
   daa.textContent=`${da.getDate()} ${months[da.getMonth()]} ${da.getFullYear()}`
    temp.textContent=`${data.temp_c} deg C`
