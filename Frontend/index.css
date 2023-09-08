@@ -251,6 +251,10 @@ width: 30%;
     .data2{
         margin-left: 0;
         align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 25px;
     }
     .card2{
         display: flex;
